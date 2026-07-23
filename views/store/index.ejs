@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/output.css" rel="stylesheet">
+  <title>Home page</title>
+</head>
+<body class="min-h-screen bg-stone-50 text-slate-800 antialiased">
+  <main class="relative isolate min-h-screen overflow-hidden">
+    <div class="absolute inset-x-0 top-0 -z-10 h-[32rem] bg-gradient-to-br from-amber-100 via-stone-50 to-sky-100"></div>
+    <div class="absolute -right-24 top-16 -z-10 h-72 w-72 rounded-full bg-amber-300/30 blur-3xl"></div>
+    <div class="absolute -left-24 bottom-0 -z-10 h-72 w-72 rounded-full bg-sky-300/25 blur-3xl"></div>
+
+    <div class="mx-auto flex min-h-screen max-w-6xl flex-col px-6 py-6 sm:px-10 lg:px-12">
+      <%- include('../partials/navbar') %>
+
+      <section class="flex flex-1 items-center py-16 sm:py-24">
+        <div class="grid w-full items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+          <div class="max-w-2xl">
+            <p class="mb-5 inline-flex items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1 text-sm font-medium text-amber-800">
+              <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+              Find a place that feels right
+            </p>
+            <h1 class="text-5xl font-bold leading-[1.05] tracking-tight text-slate-950 sm:text-6xl">
+              Welcome home, simply.
+            </h1>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+              Discover thoughtfully selected homes and make your next move with confidence. Comfort, character, and convenience&mdash;together in one place.
+            </p>
+            <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+              <a href="/host/add-home" class="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-900 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-slate-900/20 transition hover:-translate-y-0.5 hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-slate-300">
+                Add your home
+                <span aria-hidden="true">&rarr;</span>
+              </a>
+              <a href="#explore" class="inline-flex items-center justify-center rounded-lg px-6 py-3.5 text-sm font-semibold text-slate-700 transition hover:bg-white/70 focus:outline-none focus:ring-4 focus:ring-slate-200">
+                Explore homes
+              </a>
+            </div>
+            <div class="mt-12 flex items-center gap-7 text-sm text-slate-600">
+              <div><strong class="block text-xl text-slate-900">1,200+</strong>homes listed</div>
+              <div class="h-9 w-px bg-slate-300"></div>
+              <div><strong class="block text-xl text-slate-900">4.9/5</strong>host rating</div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <% const homeList = typeof homes !== 'undefined' && Array.isArray(homes) ? homes : []; %>
+      <section id="explore" class="pb-16 sm:pb-24">
+        <div class="mb-8 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.18em] text-amber-700">Explore stays</p>
+            <h2 class="mt-2 text-3xl font-bold tracking-tight text-slate-950">Available homes with character</h2>
+          </div>
+          <p class="text-sm text-slate-500"><%= homeList.length %> home<%= homeList.length === 1 ? '' : 's' %> available</p>
+        </div>
+
+        <% if (homeList.length === 0) { %>
+          <div class="rounded-2xl border border-dashed border-slate-300 bg-white/70 px-6 py-14 text-center shadow-sm">
+            <div class="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-amber-50 text-xl text-amber-700">⌂</div>
+            <h3 class="mt-4 text-lg font-bold text-slate-900">No homes listed yet</h3>
+            <p class="mt-2 text-sm text-slate-500">Be the first to share a place worth coming home to.</p>
+            <a href="/host/add-home" class="mt-6 inline-flex rounded-lg bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800">List your home</a>
+          </div>
+        <% } else { %>
+          <ul class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <% homeList.forEach(home => { %>
+              <li class="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10">
+                <img
+                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&amp;fit=crop&amp;w=1200&amp;q=85"
+                  alt="Modern home exterior"
+                  class="h-48 w-full object-cover transition duration-500 group-hover:scale-105"
+                >
+                <div class="p-5">
+                  <p class="flex items-center gap-1.5 text-sm font-medium text-slate-500">
+                    <span class="text-amber-600" aria-hidden="true">●</span>
+                    <%= home.location ?? home.Location ?? 'Location to be confirmed' %>
+                  </p>
+                  <h3 class="mt-2 truncate text-xl font-bold tracking-tight text-slate-950"><%= home.houseName ?? 'Unnamed home' %></h3>
+
+                  <div class="mt-4 flex items-center justify-between rounded-xl border border-emerald-100 bg-emerald-50 px-3 py-2.5">
+                    <div class="flex items-center gap-2">
+                      <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+                      <span class="text-sm font-semibold text-emerald-800">Available now</span>
+                    </div>
+                    <span class="text-xs font-medium text-emerald-700">Ready to book</span>
+                  </div>
+
+                  <div class="mt-4 grid grid-cols-2 divide-x divide-slate-200 rounded-xl bg-stone-50 px-1 py-3">
+                    <div class="px-3">
+                      <p class="text-xs font-medium text-slate-500">Full day</p>
+                      <p class="mt-1 text-sm font-bold text-slate-900">₹<%= home.rent || home.rentfullday || '—' %></p>
+                    </div>
+                    <div class="px-3">
+                      <p class="text-xs font-medium text-slate-500">Per night</p>
+                      <p class="mt-1 text-sm font-bold text-slate-900">₹<%= home.rentNight || home.rentPernight || '—' %></p>
+                    </div>
+                  </div>
+                 
+                </div>
+              </li>
+               
+            <% }) %>
+          </ul>
+        <% } %>
+      </section>
+      <footer class="text-center text-sm text-slate-500">A better way to find your place.</footer>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/output.css" rel="stylesheet">
+  <title>404 | Page not found</title>
+</head>
+<body class="min-h-screen bg-stone-50 text-slate-900 antialiased">
+  <div class="relative z-10 mx-auto max-w-6xl px-6 py-6 sm:px-10 lg:px-12">
+    <%- include('./partials/navbar') %>
+  </div>
+  <main class="relative isolate flex min-h-screen items-center justify-center overflow-hidden px-6 py-12">
+    <div class="absolute inset-0 -z-20 bg-gradient-to-br from-red-100 via-stone-50 to-rose-100"></div>
+    <div class="absolute -left-24 top-12 -z-10 h-72 w-72 rounded-full bg-red-400/25 blur-3xl"></div>
+    <div class="absolute -right-20 bottom-0 -z-10 h-80 w-80 rounded-full bg-rose-400/20 blur-3xl"></div>
+
+    <section class="w-full max-w-2xl text-center">
+      <a href="/" class="inline-flex items-center gap-3 text-lg font-semibold tracking-tight text-slate-900">
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-red-600 text-sm font-bold text-white shadow-lg shadow-red-600/25">H</span>
+        HomeSpace
+      </a>
+
+      <div class="mt-10 rounded-3xl border border-red-100 bg-white/85 px-6 py-12 shadow-2xl shadow-red-950/10 backdrop-blur sm:px-12 sm:py-16">
+        <p class="inline-flex items-center gap-2 rounded-full bg-red-50 px-4 py-2 text-sm font-bold text-red-700">
+          <span class="h-2 w-2 rounded-full bg-red-500"></span>
+          Error 404
+        </p>
+        <p class="mt-6 text-8xl font-black leading-none tracking-tighter text-red-600 sm:text-9xl">404</p>
+        <h1 class="mt-5 text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">This page has moved out.</h1>
+        <p class="mx-auto mt-4 max-w-md text-base leading-7 text-slate-600 sm:text-lg">
+          The address you entered does not lead to a page on HomeSpace. Let&rsquo;s get you back somewhere familiar.
+        </p>
+
+        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="/" class="inline-flex items-center justify-center gap-2 rounded-xl bg-red-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-600/25 transition hover:-translate-y-0.5 hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200">
+            Back to home
+            <span aria-hidden="true">&rarr;</span>
+          </a>
+          <a href="/host/add-home" class="inline-flex items-center justify-center rounded-xl border border-red-200 bg-red-50 px-6 py-3.5 text-sm font-semibold text-red-700 transition hover:border-red-300 hover:bg-red-100 focus:outline-none focus:ring-4 focus:ring-red-100">
+            List your home
+          </a>
+        </div>
+      </div>
+
+      <p class="mt-7 text-sm text-slate-500">Need help finding your way? Start again from the homepage.</p>
+    </section>
+  </main>
+</body>
+</html>

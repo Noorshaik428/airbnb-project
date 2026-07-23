@@ -1,0 +1,10 @@
+<form action="/favourite-list" method="POST" class="w-full sm:w-auto">
+  <input type="hidden" name="id" value="<%= home.id %>">
+  <button
+    type="submit"
+    class="flex w-full items-center justify-center gap-2 rounded-full border border-rose-200 bg-rose-50 px-5 py-2.5 text-sm font-semibold text-rose-700 transition hover:border-rose-300 hover:bg-rose-100 focus:outline-none focus:ring-4 focus:ring-rose-200 active:scale-[0.98] sm:w-auto"
+  >
+    <span aria-hidden="true">♥</span>
+    Add to favourites
+  </button>
+</form>
